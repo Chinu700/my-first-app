@@ -1,6 +1,13 @@
 import './App.css';
+import './Day2.css'; // Import the new premium styles
 import Greeting from './components/Greeting';
 import Card from './components/Card';
+import Dashboard from './components/Dashboard';
+import Counter from './components/Counter';
+import SearchBar from './components/SearchBar';
+import ConditionalRendering from './components/ConditionalRendering';
+import TodoList from './components/TodoList';
+import AutoFocusForm from './components/AutoFocusForm';
 
 // ─── Exercise 3: JSX variable ───────────────────────────────────────────────
 const name = "CKS";               // ← your name!
@@ -8,70 +15,98 @@ const name = "CKS";               // ← your name!
 // ─── Exercise 3: Fruits array (map exercise) ────────────────────────────────
 const fruits = ["🍎 Apple", "🍌 Banana", "🍇 Grapes"];
 
-// ─── Exercise 3 — Contrast box (imperative vs declarative) ──────────────────
-//
-//  IMPERATIVE (plain JS):
-//    const btn = document.createElement('button');
-//    btn.textContent = "Click me";
-//    btn.style.background = "blue";
-//    document.body.appendChild(btn);
-//    btn.addEventListener('click', () => btn.style.background = "red");
-//
-//  DECLARATIVE (JSX below) — you DESCRIBE what the UI looks like; React
-//  figures out how to update the DOM:
-
 function App() {
   return (
     <div className="app">
 
-      {/* ── Exercise 1: Changed heading ──────────────────────────────── */}
-      <h1>My AI Journey Begins</h1>
+      {/* ── Day 1 Exercises ────────────────────────────────────────── */}
+      <section className="day-section">
+        <header className="day-header">
+          <h1>Day 1: React Fundamentals</h1>
+        </header>
 
-      <hr />
+        <section className="section">
+          <h2>Hello, {name}! 🚀</h2>
+          <div className="card-grid">
+            <div className="profile-card">
+              <h3>🍉 Favourite Fruits</h3>
+              <ul style={{ paddingLeft: '20px' }}>
+                {fruits.map((fruit) => (
+                  <li key={fruit} style={{ margin: '8px 0' }}>{fruit}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
 
-      {/* ── Exercise 3: Render name variable ────────────────────────── */}
-      <h2>Hello, {name}! 🚀</h2>
+        <section className="section">
+          <h3>Greetings from Greeting.jsx</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '15px' }}>
+            <Greeting name="Alice" />
+            <Greeting name="Bob" />
+            <Greeting name={name} />
+          </div>
+        </section>
 
-      {/* ── Exercise 3: Map through fruits array ─────────────────────── */}
-      <section className="section">
-        <h3>🍉 My Favourite Fruits</h3>
-        <ul>
-          {fruits.map((fruit) => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+        <section className="section">
+          <h3>Why React?</h3>
+          <div className="card-grid">
+            <Card
+              title="⚡ Component-Based"
+              description="Build encapsulated components that manage their own state."
+            />
+            <Card
+              title="🔄 Declarative"
+              description="Design views for each state, and React updates the DOM efficiently."
+            />
+            <Card
+              title="📦 Reusable"
+              description="Develop new features without rewriting old ones."
+            />
+          </div>
+        </section>
       </section>
 
-      <hr />
+      {/* ── Day 2 Exercises ────────────────────────────────────────── */}
+      <div className="day2-container">
+        <header style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <h1 style={{ 
+            fontSize: '3.5rem', 
+            fontWeight: 900, 
+            lineHeight: '1', /* Use relative units */
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            margin: '0 auto 10px auto'
+          }}>
+            Day 2: Advanced React Patterns
+          </h1>
+          <p className="text-muted" style={{ fontSize: '1.2rem', marginTop: '10px' }}>
+            Mastering State, Props, Event Handling & Hooks
+          </p>
+        </header>
 
-      {/* ── Exercise 4: Greeting component used 3× ───────────────────── */}
-      <section className="section">
-        <h3>Greetings from Greeting.jsx</h3>
-        <Greeting name="Alice" />
-        <Greeting name="Bob" />
-        <Greeting name={name} />
-      </section>
+        <div style={{ display: 'grid', gap: '30px' }}>
+          {/* Topic 1: Props & Functional Components */}
+          <Dashboard />
 
-      <hr />
+          {/* Topic 2: useState Hook */}
+          <Counter />
 
-      {/* ── Exercise 4: Card component — 3 React features ────────────── */}
-      <section className="section">
-        <h3>Why React?</h3>
-        <div className="card-grid">
-          <Card
-            title="⚡ Component-Based"
-            description="Build encapsulated components that manage their own state, then compose them to make complex UIs."
-          />
-          <Card
-            title="🔄 Declarative"
-            description="React makes it painless to create interactive UIs. Design views for each state, and React updates the DOM efficiently."
-          />
-          <Card
-            title="📦 Learn Once, Write Anywhere"
-            description="Develop new features without rewriting old ones. React can also render on the server or power native mobile apps."
-          />
+          {/* Topic 3: Event Handling */}
+          <SearchBar />
+
+          {/* Topic 4: Conditional Rendering */}
+          <ConditionalRendering />
+
+          {/* Topic 5: Lists & Keys */}
+          <TodoList />
+
+          {/* Topic 6: useRef Hook */}
+          <AutoFocusForm />
         </div>
-      </section>
+      </div>
+
     </div>
   );
 }
